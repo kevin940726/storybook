@@ -1,0 +1,25 @@
+{
+  "name": "@storybook/addon-codesandbox",
+  "version": "6.0.0-alpha.19",
+  "description": "CodeSandbox addon for storybook docs",
+  "keywords": [
+    "storybook",
+    "storybook docs",
+    "codesandbox",
+    "remark-codesandbox"
+  ],
+  "homepage": "https://github.com/storybookjs/storybook/tree/master/addons/codesandbox",
+  "bugs": {
+    "url": "https://github.com/storybookjs/storybook/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/storybookjs/storybook.git",
+    "directory": "addons/codesandbox"
+  },
+  "license": "MIT",
+  "main": "preset.js",
+  "dependencies": {
+    "remark-codesandbox": "^0.5.2"
+  }
+}

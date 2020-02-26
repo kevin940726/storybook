@@ -7,6 +7,7 @@ module.exports = {
         configureJSX: true,
       },
     },
+    '@storybook/addon-codesandbox',
     '@storybook/addon-actions',
     '@storybook/addon-links',
     '@storybook/addon-events',

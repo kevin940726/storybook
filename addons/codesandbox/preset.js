@@ -1,10 +1,13 @@
 const codesandbox = require('remark-codesandbox');
 
-const DEFAULT_OPTIONS = {
-  mode: 'button',
-};
+exports.webpack = function webpack(baseConfig, options) {
+  const pluginOptions = {
+    mode: options.mode || 'button',
+    query: options.query,
+    customTemplates: options.customTemplates,
+    autoDeploy: options.autoDeploy,
+  };
 
-exports.webpack = function webpack(baseConfig, options = DEFAULT_OPTIONS) {
   const remarkPluginsRules = baseConfig.module.rules
     .filter(rule => rule.test instanceof RegExp && rule.test.test('.stories.mdx'))
     .filter(rule => Array.isArray(rule.use))
@@ -18,7 +21,7 @@ exports.webpack = function webpack(baseConfig, options = DEFAULT_OPTIONS) {
     );
   }
 
-  remarkPluginsRules.forEach(remarkPlugins => {
+  new Set(remarkPluginsRules).forEach(remarkPlugins => {
     if (remarkPlugins.find(plugin => plugin === codesandbox || plugin[0] === codesandbox)) {
       // eslint-disable-next-line no-console
       console.warn(
@@ -27,7 +30,7 @@ exports.webpack = function webpack(baseConfig, options = DEFAULT_OPTIONS) {
       return;
     }
 
-    remarkPlugins.push([codesandbox, options]);
+    remarkPlugins.push([codesandbox, pluginOptions]);
   });
 
   return baseConfig;

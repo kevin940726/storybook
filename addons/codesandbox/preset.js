@@ -1,9 +1,6 @@
 const codesandbox = require('remark-codesandbox');
 
-exports.webpack = function webpack(
-  baseConfig,
-  { mode = 'button', query, customTemplates, autoDeploy }
-) {
+exports.webpack = function webpack(baseConfig, { mode, query, customTemplates, autoDeploy }) {
   const pluginOptions = {
     mode,
     query,

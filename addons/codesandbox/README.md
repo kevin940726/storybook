@@ -46,15 +46,7 @@ See the [documentation of `remark-codesandbox`](https://github.com/kevin940726/r
 
 ## Options
 
-All [options from `remark-codesandbox`](https://github.com/kevin940726/remark-codesandbox#options) are supported, with the following defaults.
-
-```js
-options = {
-  mode: 'button',
-};
-```
-
-Add your options in the `addons` list:
+All [options from `remark-codesandbox`](https://github.com/kevin940726/remark-codesandbox#options) are supported. You can add your options in the `addons` list:
 
 ```js
 module.exports = {

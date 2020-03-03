@@ -85,6 +85,12 @@ const Code = styled.code({
   opacity: 1,
 });
 
+const CodeSandboxLink = styled.a({
+  position: 'absolute',
+  top: 0,
+  right: 0,
+});
+
 export interface SyntaxHighlighterRendererProps {
   rows: any[];
   stylesheet: string;
@@ -118,6 +124,7 @@ export const SyntaxHighlighter: FunctionComponent<Props> = ({
   ...rest
 }) => {
   const [copied, setCopied] = useState(false);
+  const codesandboxURL = rest['data-codesandbox-url'];
 
   const onClick = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
@@ -155,6 +162,16 @@ export const SyntaxHighlighter: FunctionComponent<Props> = ({
 
       {copyable ? (
         <ActionBar actionItems={[{ title: copied ? 'Copied' : 'Copy', onClick }]} />
+      ) : null}
+
+      {codesandboxURL ? (
+        <CodeSandboxLink href={codesandboxURL} target="_blank" rel="noopener">
+          <img
+            alt="Edit on CodeSandbox"
+            src="https://codesandbox.io/static/img/play-codesandbox.svg"
+            height="30"
+          />
+        </CodeSandboxLink>
       ) : null}
     </Wrapper>
   ) : null;

@@ -21,5 +21,8 @@
   "main": "preset.js",
   "dependencies": {
     "remark-codesandbox": "^0.5.2"
+  },
+  "peerDependencies": {
+    "@storybook/addon-docs": "^6.0.0-alpha.19"
   }
 }

@@ -23,6 +23,8 @@
     "remark-codesandbox": "^0.5.2"
   },
   "peerDependencies": {
-    "@storybook/addon-docs": "^6.0.0-alpha.19"
+    "@storybook/addon-docs": "^6.0.0-alpha.19",
+    "@storybook/client-api": "*",
+    "react": "*"
   }
 }

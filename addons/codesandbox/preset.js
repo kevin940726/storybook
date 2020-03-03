@@ -35,3 +35,7 @@ exports.webpack = function webpack(baseConfig, { mode, query, customTemplates, a
 
   return baseConfig;
 };
+
+exports.config = function config(entries) {
+  return [...entries, require.resolve('./preview')];
+};

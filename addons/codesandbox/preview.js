@@ -7,26 +7,30 @@ const Code = ({ 'data-codesandbox-url': codesandboxURL, ...props }) => {
   return React.createElement(
     'div',
     { style: { position: 'relative' } },
-    React.createElement(CodeOrSourceMdx, props),
-    codesandboxURL &&
-      React.createElement(
-        'a',
-        {
-          href: codesandboxURL,
-          target: '_blank',
-          rel: 'noopener',
-          style: {
-            position: 'absolute',
-            top: 0,
-            right: 0,
-          },
-        },
-        React.createElement('img', {
-          alt: 'Edit on CodeSandbox',
-          src: 'https://codesandbox.io/static/img/play-codesandbox.svg',
-          height: 30,
-        })
-      )
+    React.createElement(CodeOrSourceMdx, {
+      ...props,
+      actions: defaultActions =>
+        React.createElement(
+          React.Fragment,
+          null,
+          codesandboxURL &&
+            React.createElement(
+              'a',
+              {
+                href: codesandboxURL,
+                target: '_blank',
+                rel: 'noopener',
+                style: { display: 'inline-flex' },
+              },
+              React.createElement('img', {
+                src: 'https://codesandbox.io/static/img/play-codesandbox.svg',
+                alt: 'Edit on CodeSandbox',
+                height: 25,
+              })
+            ),
+          ...defaultActions
+        ),
+    })
   );
 };
 

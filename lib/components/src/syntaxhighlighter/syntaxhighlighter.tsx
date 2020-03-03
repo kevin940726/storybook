@@ -13,7 +13,7 @@ import typescript from 'react-syntax-highlighter/dist/cjs/languages/prism/typesc
 import { PrismLight as ReactSyntaxHighlighter } from 'react-syntax-highlighter';
 // @ts-ignore
 import createElement from 'react-syntax-highlighter/dist/cjs/create-element';
-import { ActionBar } from '../ActionBar/ActionBar';
+import { ActionBar, ActionButton } from '../ActionBar/ActionBar';
 import { ScrollArea } from '../ScrollArea/ScrollArea';
 
 import { formatter } from './formatter';
@@ -115,6 +115,7 @@ export const SyntaxHighlighter: FunctionComponent<Props> = ({
   padded = false,
   format = true,
   className = null,
+  actions = null,
   ...rest
 }) => {
   const [copied, setCopied] = useState(false);
@@ -137,6 +138,8 @@ export const SyntaxHighlighter: FunctionComponent<Props> = ({
     window.setTimeout(() => setCopied(false), 1500);
   };
 
+  const copyButton = <ActionButton onClick={onClick}>{copied ? 'Copied' : 'Copy'}</ActionButton>;
+
   return children ? (
     <Wrapper bordered={bordered} padded={padded} className={className}>
       <Scroller>
@@ -152,10 +155,9 @@ export const SyntaxHighlighter: FunctionComponent<Props> = ({
           {format ? formatter((children as string).trim()) : (children as string).trim()}
         </ReactSyntaxHighlighter>
       </Scroller>
-
-      {copyable ? (
-        <ActionBar actionItems={[{ title: copied ? 'Copied' : 'Copy', onClick }]} />
-      ) : null}
+      <ActionBar>
+        {typeof actions === 'function' ? actions([copyButton]) : copyable && copyButton}
+      </ActionBar>
     </Wrapper>
   ) : null;
 };

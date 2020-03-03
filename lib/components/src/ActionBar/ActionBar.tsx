@@ -12,7 +12,7 @@ const Container = styled.div<{}>(({ theme }) => ({
   zIndex: 1,
 }));
 
-export const ActionButton = styled.button<{ disabled: boolean }>(
+export const ActionButton = styled.button<{ disabled?: boolean }>(
   ({ theme }) => ({
     border: '0 none',
     padding: '4px 10px',
@@ -55,21 +55,27 @@ ActionButton.displayName = 'ActionButton';
 
 export interface ActionItem {
   title: string | JSX.Element;
-  onClick: (e: MouseEvent<HTMLButtonElement>) => void;
+  onClick?: (e: MouseEvent<HTMLButtonElement>) => void;
   disabled?: boolean;
 }
 
 export interface ActionBarProps {
-  actionItems: ActionItem[];
+  actionItems?: ActionItem[];
 }
 
-export const ActionBar: FunctionComponent<ActionBarProps> = ({ actionItems, ...props }) => (
+export const ActionBar: FunctionComponent<ActionBarProps> = ({
+  actionItems,
+  children,
+  ...props
+}) => (
   <Container {...props}>
-    {actionItems.map(({ title, onClick, disabled }, index: number) => (
-      // eslint-disable-next-line react/no-array-index-key
-      <ActionButton key={index} onClick={onClick} disabled={disabled}>
-        {title}
-      </ActionButton>
-    ))}
+    {actionItems
+      ? actionItems.map(({ title, onClick, disabled }, index: number) => (
+          // eslint-disable-next-line react/no-array-index-key
+          <ActionButton key={index} onClick={onClick} disabled={disabled}>
+            {title}
+          </ActionButton>
+        ))
+      : children}
   </Container>
 );
